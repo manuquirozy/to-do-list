@@ -1,0 +1,30 @@
+html,
+body {
+  height: 100%;
+  background-image: url('/src/assets/background.jpg');
+}
+
+.main-container {
+  margin: 0;
+  width: 100%;
+  padding: 1em;
+}
+
+@media (min-width: 768px) {
+  .main-container {
+    padding: 10%;
+  }
+}
+
+#table-description {
+  min-width: 250px;
+}
+
+th {
+  width: fit-content;
+  text-align: center;
+}
+
+td {
+  text-align: center;
+}

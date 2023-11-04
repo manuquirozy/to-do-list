@@ -1,0 +1,10 @@
+<%- include("header") -%>
+    <main class="main-container h-100 d-flex flex-column justify-content-center align-items-center">
+        <i class="bi bi-exclamation-triangle-fill h1"></i>
+        <h1 class="text-danger">There was an error</h1>
+        <h3>
+            <%= Error %>
+        </h3>
+        <a class="btn btn-primary mt-3" href="/list">Retry</a>
+    </main>
+    <%- include("footer") -%>

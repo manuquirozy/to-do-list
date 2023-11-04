@@ -1,0 +1,95 @@
+<%- include("header") -%>
+    <main class="main-container h-100 d-flex flex-column">
+        <%- include("title") -%>
+            <div class="table-responsive h-100">
+                <table class="table table-bordered align-middle">
+                    <thead>
+                        <tr>
+                            <th>Task description</th>
+                            <th>Status</th>
+                            <th>Edit</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for (const todo of Todos) { %>
+                            <tr>
+                                <td id="table-description">
+                                    <%= todo.description %>
+                                </td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button id="status-dropdown" class="btn btn-secondary dropdown-toggle"
+                                            type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <%= todo.status %>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item <%= todo._id %>"
+                                                    data-value="Completed">Completed</a></li>
+                                            <li><a class="dropdown-item <%= todo._id %>" data-value="In progress">In
+                                                    progress</a></li>
+                                            <li><a class="dropdown-item <%= todo._id %>" data-value="To do">To do</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#editModal-<%= todo._id %>">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </button>
+                                    <div class="modal fade" id="editModal-<%= todo._id %>" tabindex="-1"
+                                        aria-labelledby="editModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="editModalLabel">Edit task</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="/edit/<%= todo._id %>" method="POST">
+                                                        <div class="form-floating mb-4">
+                                                            <textarea class="form-control required" id="description"
+                                                                name="description"><%= todo.description %></textarea>
+                                                        </div>
+                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal-<%= todo._id %>">
+                                        <i class="bi bi-trash3-fill"></i>
+                                    </button>
+                                    <div class="modal fade" id="deleteModal-<%= todo._id %>" tabindex="-1"
+                                        aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h3 class="modal-title fs-5 text-start" id="deleteModalLabel">Are
+                                                        you
+                                                        sure you want to
+                                                        permanently delete the task</h3>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                    <a class="btn btn-primary" href="/delete/<%= todo._id %>">Delete</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <% } %>
+                    </tbody>
+                </table>
+            </div>
+    </main>
+    <%- include("footer") -%>
