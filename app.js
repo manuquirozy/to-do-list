@@ -22,7 +22,7 @@ mongoose
   .catch((error) => console.error(error));
 
 app.listen(app.get('port'), () => {
-  console.log('The server is running on port ' + app.get('puerto'));
+  console.log('The server is running on port ' + app.get('port'));
 });
 
 app.use(express.urlencoded({ extended: false }));
